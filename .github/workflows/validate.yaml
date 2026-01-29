@@ -16,4 +16,9 @@ jobs:
           python -m venv .venv
           source .venv/bin/activate
           pip install git+https://github.com/agentskills/agentskills.git#subdirectory=skills-ref
-          skills-ref validate .
+          for dir in skills/*; do
+            [ -d "$dir" ] || continue
+            echo "::group::Validating $dir"
+            skills-ref validate "$dir"
+            echo "::endgroup::"
+          done
