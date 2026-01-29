@@ -1,6 +1,6 @@
 # SushiSwap Agent Skills
 
-Agent Skills for integrating the **SushiSwap Swap Aggregator** into your applications.  
+Agent Skills for integrating the **SushiSwap Aggregator** into your applications.
 These skills teach AI agents how to help developers implement optimized token swaps,
 pricing, and executable transaction generation using the
 [SushiSwap SDK](https://github.com/sushi-labs/sushi) and

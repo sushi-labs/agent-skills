@@ -14,7 +14,7 @@ description: >
 
 # SushiSwap REST API Integration
 
-The SushiSwap API provides HTTP access to the SushiSwap Swap Aggregator for
+The SushiSwap API provides HTTP access to the SushiSwap Aggregator for
 **optimized token swaps**, **price discovery**, and **transaction generation**.
 It aggregates liquidity from multiple DEXs to determine the best execution route.
 

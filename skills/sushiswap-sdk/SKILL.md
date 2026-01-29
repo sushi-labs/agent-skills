@@ -77,7 +77,7 @@ import { SWAP_API_SUPPORTED_CHAIN_IDS } from 'sushi/evm'
     - The agent must fail early or prompt the user to select a supported network
     - Agents must not attempt to guess or hardcode supported chains
 
-This list reflects the networks currently supported by the SushiSwap Swap Aggregator API. The supported networks may change over time and should not be cached indefinitely.
+This list reflects the networks currently supported by the SushiSwap Aggregator API. The supported networks may change over time and should not be cached indefinitely.
 
 --
 
