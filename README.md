@@ -13,14 +13,14 @@ pricing, and executable transaction generation using the
 Install all skills from this repository:
 
 ```bash
-npx skills add <owner>/sushiswap-agent-skills
+npx skills add sushi-labs/agent-skills
 ```
 
 Or install individual skills:
 
 ```bash
-npx skills add <owner>/sushiswap-agent-skills/sushiswap-sdk
-npx skills add <owner>/sushiswap-agent-skills/sushiswap-api
+npx skills add sushi-labs/agent-skills/sushiswap-sdk
+npx skills add sushi-labs/agent-skills/sushiswap-api
 ```
 
 ---
