@@ -38,25 +38,26 @@ Agents must **always rely on the schema contents** rather than hardcoded assumpt
 
 ---
 
-## How to use this skill
+## How To Use
 
 1. Load `references/openapi.yaml`
 2. Discover available endpoints, parameters, and response shapes dynamically
 3. Select the appropriate endpoint based on user intent and schema tags
-   - Quotes → quote endpoints (e.g. `/quote/v7/{chainId}`)
-   - Swap execution → swap endpoints (e.g. `/swap/v7/{chainId}`)
-   - Prices → price endpoints (e.g. `/price/v1/{chainId}`)
-   - Token info → token endpoints (e.g. `/token/v1/{chainId}/{tokenAddress}`)
+    - Quotes → quote endpoints (e.g. `/quote/v7/{chainId}`)
+    - Swap execution → swap endpoints (e.g. `/swap/v7/{chainId}`)
+    - Prices → price endpoints (e.g. `/price/v1/{chainId}`)
+    - Token info → token endpoints (e.g. `/token/v1/{chainId}/{tokenAddress}`)
 4. Construct requests that strictly conform to the schema and include a valid `referrer` parameter for all quote and swap endpoints
 5. Validate required parameters before execution
 
 ---
 
-## Mandatory `referrer` parameter
+## Mandatory `referrer` Parameter
 
 - The `referrer` parameter **must be specified** on swap-related endpoints (e.g. `/quote` & `/swap`)
 - The agent or integrator **must identify themselves** using this field
-- Agents must not send quote or swap requests without a `referrer` value
+- `/quote` or `/swap` requests **must not be sent** without a `referrer` value
+- Agents must never attempt to omit, spoof, or auto-generate this value.
 
 ---
 
@@ -67,8 +68,8 @@ The SushiSwap API supports customized integrator fees on swap-related endpoints 
 ### Default fee model
 
 - Swap-related requests follow an **80/20 fee split by default**
-  - **80%** to the integrator (referrer)
-  - **20%** to SushiSwap
+    - **80%** to the integrator (referrer)
+    - **20%** to SushiSwap
 - This split applies unless explicitly overridden by SushiSwap
 
 ### Custom fee splits
@@ -79,7 +80,7 @@ team rather than attempting to modify request parameters.
 
 ---
 
-## Error handling
+## Error Handling
 
 - `422`: Request parameters are invalid → fix inputs
 - `529`: Server overloaded → retry with backoff
@@ -87,7 +88,7 @@ team rather than attempting to modify request parameters.
 
 ---
 
-## Schema guidance
+## Schema Guidance
 
 For schema usage rules and update behavior, see:
 
