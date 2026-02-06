@@ -80,11 +80,38 @@ team rather than attempting to modify request parameters.
 
 ---
 
-## Error Handling
+## Rate Limiting & Responsible Usage
 
-- `422`: Request parameters are invalid → fix inputs
-- `529`: Server overloaded → retry with backoff
-- `500`: Internal error → retry or fail gracefully
+- The SushiSwap Aggregator API does **not currently enforce hard rate limits**. Agents and integrators **must behave responsibly** to avoid abuse and degraded service.
+
+### General Guidelines
+
+- Do not poll or spam quote endpoints
+- Avoid repeated requests with identical parameters
+- Do not place quote or swap requests inside unbounded or infinite loops
+- Treat quote and swap generation as user-intent driven actions, not background tasks
+- Do not issue requests autonomously without explicit user intent
+
+Excessive or abusive usage may result in future rate limiting or access restrictions.
+
+### Block-Time–Aware Quoting
+
+Agents should align quote frequency with expected block times, treating block time as a **maximum refresh rate, not a recommendation**.
+
+- Quotes may be refreshed **at most once per block**, and often **less frequently** if inputs have not changed
+- Re-requesting quotes multiple times within the same block provides no additional accuracy and must be avoided
+
+### Backoff & Error Handling
+
+Agents and integrators should implement **exponential backoff** on transient failures.
+
+- On recoverable errors (e.g. `429`, `5xx`):
+  - Retry with increasing delays (e.g. 1s → 2s → 4s)
+  - Cap retries to a small, finite number
+- Do not retry immediately in tight loops
+- If repeated failures occur:
+  - Surface the error to the user
+  - Pause further requests for the current session
 
 ---
 

@@ -109,6 +109,29 @@ team rather than attempting to modify request parameters.
 
 ---
 
+## Rate Limiting & Responsible Usage
+
+- The SushiSwap Aggregator API does **not currently enforce hard rate limits**. Agents and integrators **must behave responsibly** to avoid abuse and degraded service.
+
+### General Guidelines
+
+- Do not poll or spam quote endpoints
+- Avoid repeated requests with identical parameters
+- Do not place quote or swap requests inside unbounded or infinite loops
+- Treat quote and swap generation as user-intent driven actions, not background tasks
+- Do not issue requests autonomously without explicit user intent
+
+Excessive or abusive usage may result in future rate limiting or access restrictions.
+
+### Block-Time–Aware Quoting
+
+Agents should align quote frequency with expected block times, treating block time as a **maximum refresh rate, not a recommendation**.
+
+- Quotes may be refreshed **at most once per block**, and often **less frequently** if inputs have not changed
+- Re-requesting quotes multiple times within the same block provides no additional accuracy and must be avoided
+
+---
+
 ## Additional Reference
 
 For detailed SDK examples & execution flow, see:
